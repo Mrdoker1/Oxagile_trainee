@@ -1,0 +1,13 @@
+@import 'variables';
+
+@mixin inter-font($size, $color){
+    font-family: $font-family-inter;
+    font-size: $size;
+    color: $color;
+}
+
+@mixin opensans-font($size, $color){
+    font-family: $font-family-opensans;
+    font-size: $size;
+    color: $color;
+}

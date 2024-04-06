@@ -1,0 +1,8 @@
+@import 'variables';
+@import 'mixins';
+
+:root {
+    margin: 0;
+    padding: 0;
+    @include inter-font(16px, #000000);
+}
