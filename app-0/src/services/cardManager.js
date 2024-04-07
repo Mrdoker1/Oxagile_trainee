@@ -16,6 +16,7 @@ export const addCard = (title) => {
   const newCard = {
     id: Date.now(), // Простой способ создать уникальный ID
     title,
+    color: null,
     tasks: [] // Изначально задач нет
   };
   cards.push(newCard);
@@ -125,4 +126,16 @@ export const deleteCard = (cardId) => {
   let cards = loadCards();
   cards = cards.filter(card => card.id !== cardId);
   saveCards(cards);
+};
+
+export const setCardColor = (cardId, color) => {
+  const cards = loadCards(); // Загружаем все карточки
+  const cardIndex = cards.findIndex(card => card.id === cardId); // Находим индекс нужной карточки
+
+  if (cardIndex !== -1) { // Если карточка найдена
+    cards[cardIndex].color = color; // Устанавливаем новый цвет карточки
+    saveCards(cards); // Сохраняем обновлённый список карточек в localStorage
+    return true; // Возвращаем true как индикатор успешного обновления
+  }
+  return false; // Возвращаем false, если карточка с таким ID не найдена
 };
