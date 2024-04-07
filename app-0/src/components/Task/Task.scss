@@ -3,8 +3,8 @@
 .task {
   color: #000000;
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .task-title {
@@ -14,7 +14,9 @@
 
 .task-container{
   display: flex;
-  gap: 2px;
+  align-items: flex-start;
+  gap: 4px;
+  overflow: auto;
 }
 
 .task-completed {
