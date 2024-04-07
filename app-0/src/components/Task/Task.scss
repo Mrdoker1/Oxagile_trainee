@@ -1,8 +1,14 @@
 .task {
   color: #000000;
+  display: flex;
+  align-items: flex-start;
 }
 
-.task--completed {
+.task-title {
+  overflow: auto;
+}
+
+.task-completed {
     text-decoration: line-through;
     color: #6c757d;
   }

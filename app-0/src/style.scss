@@ -6,3 +6,13 @@
     padding: 0;
     @include inter-font(16px, #000000);
 }
+
+[contenteditable="true"] {
+    &:focus {
+        outline: none;
+    }
+    &:empty:not(:focus):before {
+        content: attr(data-placeholder);
+        color: grey;
+    }
+}

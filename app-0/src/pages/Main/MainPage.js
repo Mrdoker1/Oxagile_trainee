@@ -1,5 +1,8 @@
 import './MainPage.scss';
+import openOverlay from '../../components/Overlay/Overlay'
 import Button from '../../components/Button/Button';
+import Card from '../../components/Card/Card';
+import { addCard, updateCardInDOM } from '../../services/cardManager';
 
 export default function Page(cards) {
   // Создаем основной элемент страницы
@@ -8,15 +11,17 @@ export default function Page(cards) {
   pageElement.setAttribute('data-page', 'main');
 
   // Добавляем карточки на страницу
-  // Предполагается, что cards - это уже DOM-элементы
   cards.forEach(card => {
     pageElement.appendChild(card);
   });
 
-  // Создаем и добавляем кнопку в страницу
+  // Создаем и добавляем кнопку на страницу
   const myButton = Button('Нажать меня', () => {
+    const newCard = addCard();
+    const emptyCard = { title: '', id: newCard.id, tasks: [] }
+    openOverlay(Card(emptyCard), () => updateCardInDOM(newCard.id));
     console.log('Кнопка была нажата!');
-  });
+  }, 'absolute');
   pageElement.appendChild(myButton);
 
   return pageElement;

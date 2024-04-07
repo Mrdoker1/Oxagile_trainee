@@ -1,11 +1,12 @@
 .page {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); // 5 карточек по горизонтали
+    display: flex;
+    flex-wrap: wrap;
     grid-gap: 16px; // Расстояние между карточками
   }
   
   .card {
     max-height: 300px; // Максимальная высота карточки
+    max-width: 300px;
     overflow: auto; // Скролл внутри карточки, если контент не помещается
     // Остальные стили для карточки...
   }

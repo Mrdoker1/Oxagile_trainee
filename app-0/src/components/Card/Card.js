@@ -1,25 +1,50 @@
 import Task from '../Task/Task';
-import './Card'
+import './Card.scss'
+import { editCardName, addTaskToCard, updateCardInDOM, deleteCard } from '../../services/cardManager'
+import TaskInput from '../TaskInput/TaskInput';
+import Button from '../Button/Button';
 
-export default function Card(tasksData) {
-  const cardElement = document.createElement('div');
-  cardElement.className = 'card';
-
+export default function Card({ title, id, tasks }) {  
+  // Редактируемый заголовок
   const titleElement = document.createElement('h2');
-  titleElement.className = 'card__title';
-  titleElement.textContent = 'Задачи';
-  cardElement.appendChild(titleElement);
-
-  const tasksListElement = document.createElement('ul');
-  tasksListElement.className = 'card__tasks';
-
-  console.log('tasksData', tasksData)
-  
-  tasksData.forEach(task => {
-    tasksListElement.appendChild(Task(task));
+  titleElement.className = 'card-title';
+  titleElement.textContent = title;
+  titleElement.setAttribute('contenteditable', 'true');
+  titleElement.setAttribute('data-placeholder', 'Type list title');
+  titleElement.addEventListener('blur', function(event) {
+    // Сохранение нового значения заголовка карточки
+    editCardName(id, this.textContent);
+    console.log('Новое значение:', this.textContent);
   });
 
+  // Список задач карточки
+  const tasksListElement = document.createElement('ul');
+  tasksListElement.className = 'card-tasks';
+
+  tasks.forEach(task => {
+    tasksListElement.appendChild(Task(id, task));
+  });
+
+  // Инпут для новой таски
+  const taskInput = TaskInput((newTaskTitle) => {
+    addTaskToCard(id, newTaskTitle); // Функция для добавления задачи должна быть определена и передана в Card
+    updateCardInDOM(id);
+  });
+
+  // Создание кнопки для удаления карточки
+  const deleteButton = Button('Delete Card', () => {
+    deleteCard(id); // Удаление карточки из localStorage
+    updateCardInDOM(id);
+  });
+
+  // Создание контейнера для карточки и добавление элементов
+  const cardElement = document.createElement('div');
+  cardElement.className = 'card';
+  cardElement.setAttribute('data-card-id', id);
+  cardElement.appendChild(titleElement);
   cardElement.appendChild(tasksListElement);
+  cardElement.appendChild(taskInput); // Добавление инпута для новой задачи в карточку
+  cardElement.appendChild(deleteButton);
 
   return cardElement;
 }
