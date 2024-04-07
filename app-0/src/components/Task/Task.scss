@@ -1,14 +1,27 @@
+@import '../../mixins.scss';
+
 .task {
   color: #000000;
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
 }
 
 .task-title {
+  @include inter-font(14px, #000000);
   overflow: auto;
+}
+
+.task-container{
+  display: flex;
+  gap: 2px;
 }
 
 .task-completed {
     text-decoration: line-through;
     color: #6c757d;
+  }
+
+  input[type="checkbox"]:checked {
+    filter: grayscale(100%) brightness(60%);
   }

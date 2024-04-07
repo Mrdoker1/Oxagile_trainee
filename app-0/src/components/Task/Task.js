@@ -4,13 +4,16 @@ import Button from '../../components/Button/Button';
 
 export default function Task(cardID, { id, title, completed }) {
 
+  const taskContainerElement = document.createElement('div');
+  taskContainerElement.className = 'task-container';
+
   // Чекбокс
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   checkbox.checked = completed; // Установка начального состояния чекбокса
   checkbox.className = 'task-checkbox'; // Добавляем класс для возможного стилизирования
    // Обработчик события изменения чекбокса
-   checkbox.addEventListener('change', () => {
+  checkbox.addEventListener('change', () => {
     toggleTaskCompleted(cardID, id); // Переключение состояния задачи
     updateCardInDOM(cardID)
   });
@@ -27,6 +30,8 @@ export default function Task(cardID, { id, title, completed }) {
     // Здесь код для сохранения нового значения в localStorage
   });
 
+  taskContainerElement.append(checkbox, titleElement);
+
   // Создание кнопки удаления и добавление ее в элемент задачи
   const deleteButton = Button('Delete', () => {
       deleteTaskFromCard(cardID, id); // Удаление задачи из карточки
@@ -38,8 +43,7 @@ export default function Task(cardID, { id, title, completed }) {
   const taskElement = document.createElement('li');
   taskElement.className = `task ${completed ? 'task-completed' : ''}`;
   taskElement.setAttribute('data-task-id', id);
-  taskElement.appendChild(checkbox); // Сначала добавляем чекбокс
-  taskElement.appendChild(titleElement); // Затем заголовок задачи
+  taskElement.appendChild(taskContainerElement);
   taskElement.appendChild(deleteButton); // Добавление кнопки удаления в элемент задачи
 
   return taskElement;

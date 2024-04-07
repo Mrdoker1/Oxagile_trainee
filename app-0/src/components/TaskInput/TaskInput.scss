@@ -1,3 +1,7 @@
-.task-input{
+@import '../../mixins.scss';
 
+.task-input{
+    border-top: 1px solid #CCCCCC;
+    padding: 8px 0;
+    @include inter-font(14px, #777777);
 }

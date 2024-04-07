@@ -1,17 +1,27 @@
+@import '../../mixins.scss';
+
 .card {
-    border: 1px solid #ccc;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    border: 1px solid #AAAAAA;
     border-radius: 8px;
-    padding: 20px;
+    padding: 10px;
+    min-height: 300px;
+    min-width: 300px;
   }
   
-  .card-title {
-    margin: 0 0 10px 0;
-    min-width: 20px;
+.card-title {
+    margin: 0;
+    @include inter-font(14px, #000000);
+    font-weight:600;
   }
 
-  .card-tasks{
+.card-tasks{
     display: flex;
     flex-direction: column;
+    gap:10px;
     list-style: none;
     padding: 0;
+    margin: 0;
   }

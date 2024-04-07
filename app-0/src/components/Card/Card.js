@@ -48,7 +48,9 @@ export default function Card({ id, title, color, tasks }) {
   cardElement.style.backgroundColor = color; // Устанавливаем цвет фона карточки
   cardElement.setAttribute('data-card-id', id);
   cardElement.appendChild(titleElement);
-  cardElement.appendChild(tasksListElement);
+  if (tasks.length > 0) {
+    cardElement.appendChild(tasksListElement);
+  }
   cardElement.appendChild(taskInput); // Добавление инпута для новой задачи в карточку
   cardElement.appendChild(deleteButton);
   cardElement.appendChild(colorButton);

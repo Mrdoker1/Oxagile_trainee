@@ -1,3 +1,5 @@
+import './TaskInput.scss'
+
 export default function TaskInput(callback) {
     const inputElement = document.createElement('div');
     inputElement.className = 'task-input';
