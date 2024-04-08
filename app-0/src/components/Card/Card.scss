@@ -1,6 +1,7 @@
 @import '../../mixins.scss';
 
 .card {
+  position: relative;
     display: flex;
     gap: 10px;
     flex-direction: column;
@@ -17,7 +18,7 @@
     font-weight:600;
   }
 
-.card-tasks{
+.card-tasks {
     display: flex;
     flex-direction: column;
     gap:10px;
@@ -25,3 +26,14 @@
     padding: 0;
     margin: 0;
   }
+
+.action-container {
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+}

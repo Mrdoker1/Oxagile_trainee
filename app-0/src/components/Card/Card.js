@@ -11,10 +11,8 @@ export default function Card({ id, title, color, tasks }) {
   titleElement.textContent = title;
   titleElement.setAttribute('contenteditable', 'true');
   titleElement.setAttribute('data-placeholder', 'Type list title');
-  titleElement.addEventListener('blur', function(event) {
-    // Сохранение нового значения заголовка карточки
+  titleElement.addEventListener('blur', function() {
     editCardName(id, this.textContent);
-    console.log('Новое значение:', this.textContent);
   });
 
   // Список задач карточки
@@ -31,16 +29,22 @@ export default function Card({ id, title, color, tasks }) {
   });
 
   // Кнопка удаления карточки
-  const deleteButton = Button('Delete Card', () => {
+  const deleteButton = Button('', () => {
     deleteCard(id); // Удаление карточки из localStorage
     updateCardInDOM(id);
-  });
+  }, 'action', 'trash');
 
   // Установка цвета карточки
-  const colorButton = Button('Set Color', () => {
+  const colorButton = Button('', () => {
     setCardColor(id, '#F8DAD1'); // Удаление карточки из localStorage
     updateCardInDOM(id);
-  });
+  }, 'action', 'palette');
+
+  // Контейнер для экшенов
+  const actionContainerElement = document.createElement('ul');
+  actionContainerElement.className = 'action-container';
+  actionContainerElement.appendChild(deleteButton);
+  actionContainerElement.appendChild(colorButton);
 
   // Создание контейнера для карточки и добавление элементов
   const cardElement = document.createElement('div');
@@ -51,9 +55,7 @@ export default function Card({ id, title, color, tasks }) {
   if (tasks.length > 0) {
     cardElement.appendChild(tasksListElement);
   }
-  cardElement.appendChild(taskInput); // Добавление инпута для новой задачи в карточку
-  cardElement.appendChild(deleteButton);
-  cardElement.appendChild(colorButton);
+  cardElement.append(taskInput, actionContainerElement); // Добавление инпута для новой задачи в карточку
 
   return cardElement;
 }

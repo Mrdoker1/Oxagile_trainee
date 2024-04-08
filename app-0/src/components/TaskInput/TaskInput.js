@@ -1,4 +1,5 @@
 import './TaskInput.scss'
+import addIcon from '../../icons/add.svg';
 
 export default function TaskInput(callback) {
     const inputElement = document.createElement('div');
@@ -15,7 +16,13 @@ export default function TaskInput(callback) {
         this.innerHTML = ''; // Очистка содержимого после добавления задачи
       }
     });
+
+    const inputContainerElement = document.createElement('div');
+    inputContainerElement.className = 'input-container';
+    const img = document.createElement('img');
+    img.src = addIcon;
+    inputContainerElement.append(img, inputElement);
   
-    return inputElement;
+    return inputContainerElement;
   }
   

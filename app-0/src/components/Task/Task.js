@@ -33,11 +33,11 @@ export default function Task(cardID, { id, title, completed }) {
   taskContainerElement.append(checkbox, titleElement);
 
   // Создание кнопки удаления и добавление ее в элемент задачи
-  const deleteButton = Button('Delete', () => {
+  const deleteButton = Button('', () => {
       deleteTaskFromCard(cardID, id); // Удаление задачи из карточки
       updateCardInDOM(cardID); // Обновление DOM для отражения изменений
     }
-  );
+  , 'action', 'cross');
 
   // Создание контейнера для задачи и добавление задачи
   const taskElement = document.createElement('li');

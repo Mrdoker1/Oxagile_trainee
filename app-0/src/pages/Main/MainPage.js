@@ -16,12 +16,12 @@ export default function Page(cards) {
   });
 
   // Создаем и добавляем кнопку на страницу
-  const myButton = Button('Нажать меня', () => {
+  const myButton = Button('', () => {
     const newCard = addCard();
     const emptyCard = { title: '', id: newCard.id, tasks: [] }
     const closeOverlay = openOverlay(Card(emptyCard), () => updateCardInDOM(newCard.id));
     console.log('Кнопка была нажата!');
-  }, 'absolute');
+  }, 'cta', 'plus');
   pageElement.appendChild(myButton);
 
   return pageElement;

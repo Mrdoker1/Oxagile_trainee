@@ -1,9 +1,23 @@
 .button {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
 }
 
-.button-absolute{
+.button-cta {
     position: fixed;
     margin: 20px;
+    padding: 12px;
     bottom: 0;
     right: 0;
+    border-radius: 100px;
+    background-color: #039BF1;
+    &:hover{
+        opacity: 90%;
+    }
+}
+
+.button-action:hover {
+    opacity: 90%;
 }

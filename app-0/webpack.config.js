@@ -27,6 +27,20 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              // Кодирует файлы в Data URL, если их размер меньше заданного лимита.
+              limit: 8192, // 8kb
+              // Удалить кавычки из атрибутов для минимизации размера.
+              noquotes: true,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
