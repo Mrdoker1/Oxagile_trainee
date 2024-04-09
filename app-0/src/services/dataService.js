@@ -2,7 +2,7 @@ const fetchData = async (limit) => {
     try {
       const response = await fetch(`https://jsonplaceholder.typicode.com/todos?_limit=${limit}`);
       if (!response.ok) {
-        throw new Error('Network response was not ok.');
+        throw new Error('Network error!');
       }
       const data = await response.json();
       return data;

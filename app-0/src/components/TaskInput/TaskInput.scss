@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+.input-container:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
 .task-input {
+    overflow: auto;
     @include inter-font(14px, #000000);
 }

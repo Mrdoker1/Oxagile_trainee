@@ -1,6 +1,12 @@
 import './Overlay.scss'
+import { getStateManager } from '../../services/StateManager'
 
 export default function openOverlay(content, onClose) {
+
+    // Для открытия оверлея
+    const stateManager = getStateManager();
+    stateManager.overlay = { open: true, onCLose: close } 
+
     // Создание фона оверлея
     const overlayElement = document.createElement('div');
     overlayElement.className = 'overlay';
@@ -17,6 +23,8 @@ export default function openOverlay(content, onClose) {
     overlayElement.addEventListener('click', function(event) {
       event.stopPropagation();
       if (event.target === overlayElement) {
+        // Оверлей закрыт
+        stateManager.overlay = { open: false, onCLose: null } ;
         close(); // Автоматическое закрытие оверлея
         if (onClose) {
           onClose(); // Вызов дополнительной пользовательской логики при закрытии

@@ -15,7 +15,7 @@ export default function Page(cards) {
     pageElement.appendChild(card);
   });
 
-  // Создаем и добавляем кнопку на страницу
+  // Создаем и добавляем CTA кнопку на страницу
   const myButton = Button('', () => {
     const newCard = addCard();
     const emptyCard = { title: '', id: newCard.id, tasks: [] }

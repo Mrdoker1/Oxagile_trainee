@@ -1,7 +1,8 @@
 @import '../../mixins.scss';
 
 .card {
-  position: relative;
+    overflow: visible !important;
+    position: relative;
     display: flex;
     gap: 10px;
     flex-direction: column;

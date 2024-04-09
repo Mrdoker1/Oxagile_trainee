@@ -1,10 +1,15 @@
 import Task from '../Task/Task';
 import './Card.scss'
-import { editCardName, addTaskToCard, updateCardInDOM, deleteCard, setCardColor } from '../../services/cardManager'
+import { editCardName, addTaskToCard, updateCardInDOM, deleteCard, setCardColor, getCardColorByID } from '../../services/cardManager'
 import TaskInput from '../TaskInput/TaskInput';
+import ColorPicker from '../ColorPicker/ColorPicker';
 import Button from '../Button/Button';
+import { getStateManager } from '../../services/StateManager'
 
-export default function Card({ id, title, color, tasks }) {  
+export default function Card({ id, title, color, tasks }) {
+
+  const stateManager = getStateManager();
+
   // Редактируемый заголовок
   const titleElement = document.createElement('h2');
   titleElement.className = 'card-title';
@@ -30,21 +35,34 @@ export default function Card({ id, title, color, tasks }) {
 
   // Кнопка удаления карточки
   const deleteButton = Button('', () => {
+    if (stateManager.overlay.open) {
+      stateManager.overlay.onCLose();
+      console.log('Overlay closed');
+    }
     deleteCard(id); // Удаление карточки из localStorage
     updateCardInDOM(id);
   }, 'action', 'trash');
 
-  // Установка цвета карточки
+  const colorPickerElement = ColorPicker(onColorSelect, getCardColorByID(id));
+  function onColorSelect(selectedColor) {
+    setCardColor(id, selectedColor);
+    const updatedCard = updateCardInDOM(id);
+    const colorPicker = updatedCard.querySelector('.color-picker');
+    colorPicker.style.display = 'flex';
+  };
+
   const colorButton = Button('', () => {
-    setCardColor(id, '#F8DAD1'); // Удаление карточки из localStorage
-    updateCardInDOM(id);
+    if (colorPickerElement.style.display === 'none') {
+      colorPickerElement.style.display = 'flex'; // Показать ColorPicker при первом нажатии
+    } else {
+      colorPickerElement.style.display = 'none'; // Скрыть ColorPicker при повторном нажатии
+    }
   }, 'action', 'palette');
 
   // Контейнер для экшенов
   const actionContainerElement = document.createElement('ul');
   actionContainerElement.className = 'action-container';
-  actionContainerElement.appendChild(deleteButton);
-  actionContainerElement.appendChild(colorButton);
+  actionContainerElement.append(colorButton, deleteButton);
 
   // Создание контейнера для карточки и добавление элементов
   const cardElement = document.createElement('div');
@@ -55,7 +73,7 @@ export default function Card({ id, title, color, tasks }) {
   if (tasks.length > 0) {
     cardElement.appendChild(tasksListElement);
   }
-  cardElement.append(taskInput, actionContainerElement); // Добавление инпута для новой задачи в карточку
+  cardElement.append(taskInput, actionContainerElement, colorPickerElement); // Добавление инпута для новой задачи в карточку
 
   return cardElement;
 }

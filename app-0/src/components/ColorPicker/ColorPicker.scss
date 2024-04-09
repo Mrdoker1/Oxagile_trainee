@@ -1,0 +1,32 @@
+.color-picker {
+    position: absolute;
+    display: block;
+    gap: 10px;
+    padding: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 80%);
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+  .color-picker-item {
+    border: solid 1px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 20px; /* Ширина элемента */
+    height: 20px; /* Высота элемента */
+    cursor: pointer; /* Изменение курсора при наведении */
+    border-radius: 50%; /* Закругленные углы, чтобы сделать элементы круглыми */
+  }
+  
+  .checkmark {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    display: none;
+  }

@@ -46,6 +46,16 @@ export const getCardByID = (cardId) => {
     return false; // Возвращаем false, если карточка с таким ID не найдена
 }
 
+export const getCardColorByID = (cardId) => {
+  let cards = loadCards(); // Загрузка текущего списка карточек
+    // Находим карточку по ID и обновляем её заголовок
+    const cardIndex = cards.findIndex(card => card.id === cardId);
+    if (cardIndex !== -1) { // Проверка, что карточка с таким ID существует
+      return cards[cardIndex].color;
+    }
+    return false; // Возвращаем false, если карточка с таким ID не найдена
+}
+
 // Добавление задачи в карточку
 export const addTaskToCard = (cardId, taskTitle) => {
   const cards = loadCards(); // Загружаем все карточки
@@ -116,6 +126,7 @@ export const updateCardInDOM = (id) => {
       // Если карточки нет в DOM, добавляем её
       document.querySelector(`[data-page="main"]`).appendChild(updatedCardElement);
     }
+    return updatedCardElement;
   } else if (existingCardElement) {
     // Если данные карточки не найдены (карточка удалена из данных), но элемент существует в DOM, удаляем элемент
     existingCardElement.remove();
