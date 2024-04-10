@@ -11,6 +11,13 @@
     padding: 10px;
     min-height: 300px;
     min-width: 300px;
+    max-height: 300px;
+  }
+
+.editable {
+    overflow: auto;
+    max-height: fit-content;
+    min-width: 400px;
   }
   
 .card-title {
@@ -21,6 +28,7 @@
 
 .card-tasks {
     display: flex;
+    overflow: auto;
     flex-direction: column;
     gap:10px;
     list-style: none;

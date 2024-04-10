@@ -1,7 +1,7 @@
 import './MainPage.scss';
 import openOverlay from '../../components/Overlay/Overlay'
 import Button from '../../components/Button/Button';
-import Card from '../../components/Card/Card';
+import EditableCard from '../../components/Card/EditableCard';
 import { addCard, updateCardInDOM } from '../../services/cardManager';
 
 export default function Page(cards) {
@@ -19,7 +19,7 @@ export default function Page(cards) {
   const myButton = Button('', () => {
     const newCard = addCard();
     const emptyCard = { title: '', id: newCard.id, tasks: [] }
-    openOverlay(Card(emptyCard), () => updateCardInDOM(newCard.id));
+    openOverlay(EditableCard(emptyCard), () => updateCardInDOM(newCard.id));
     console.log('Кнопка была нажата!');
   }, 'cta', 'plus');
   pageElement.appendChild(myButton);

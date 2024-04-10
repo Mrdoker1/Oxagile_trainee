@@ -1,5 +1,6 @@
 import { saveToLocalStorage, loadFromLocalStorage } from './storage';
 import Card from '../components/Card/Card';
+import EditableCard from '../components/Card/EditableCard';
 
 const CARDS_KEY = 'cards';
 
@@ -118,6 +119,28 @@ export const updateCardInDOM = (id) => {
   if (cardData) {
     // Если данные карточки найдены, обновляем или добавляем карточку в DOM
     const updatedCardElement = Card(cardData); // Создаем обновленный элемент карточки
+
+    if (existingCardElement) {
+      // Если карточка уже существует в DOM, заменяем её на обновленную
+      existingCardElement.replaceWith(updatedCardElement);
+    } else {
+      // Если карточки нет в DOM, добавляем её
+      document.querySelector(`[data-page="main"]`).appendChild(updatedCardElement);
+    }
+    return updatedCardElement
+  } else if (existingCardElement) {
+    // Если данные карточки не найдены (карточка удалена из данных), но элемент существует в DOM, удаляем элемент
+    existingCardElement.remove();
+  }
+}
+
+export const updateEditableCardInDOM = (id) => {
+  const existingCardElement = document.querySelector(`[data-editable-card-id="${id}"]`);
+  const cardData = getCardByID(id); // Получаем актуальные данные карточки
+
+  if (cardData) {
+    // Если данные карточки найдены, обновляем или добавляем карточку в DOM
+    const updatedCardElement = EditableCard(cardData); // Создаем обновленный элемент карточки
 
     if (existingCardElement) {
       // Если карточка уже существует в DOM, заменяем её на обновленную
