@@ -126,7 +126,7 @@ export const updateCardInDOM = (id) => {
       // Если карточки нет в DOM, добавляем её
       document.querySelector(`[data-page="main"]`).appendChild(updatedCardElement);
     }
-    return updatedCardElement;
+    return updatedCardElement
   } else if (existingCardElement) {
     // Если данные карточки не найдены (карточка удалена из данных), но элемент существует в DOM, удаляем элемент
     existingCardElement.remove();

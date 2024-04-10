@@ -23,13 +23,13 @@ export default function openOverlay(content, onClose) {
     overlayElement.addEventListener('click', function(event) {
       event.stopPropagation();
       if (event.target === overlayElement) {
-        // Оверлей закрыт
-        stateManager.overlay = { open: false, onCLose: null } ;
         close(); // Автоматическое закрытие оверлея
         if (onClose) {
           onClose(); // Вызов дополнительной пользовательской логики при закрытии
           console.log('onClose executed');
         }
+        // Оверлей закрыт
+        stateManager.overlay = { open: false, onCLose: null } ;
       }
     });
   

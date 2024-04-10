@@ -2,6 +2,7 @@ import Task from '../Task/Task';
 import './Card.scss'
 import { editCardName, addTaskToCard, updateCardInDOM, deleteCard, setCardColor, getCardColorByID } from '../../services/cardManager'
 import TaskInput from '../TaskInput/TaskInput';
+import openOverlay from '../../components/Overlay/Overlay'
 import ColorPicker from '../ColorPicker/ColorPicker';
 import Button from '../Button/Button';
 import { getStateManager } from '../../services/StateManager'
@@ -40,9 +41,17 @@ export default function Card({ id, title, color, tasks }) {
       console.log('Overlay closed');
     }
     deleteCard(id); // Удаление карточки из localStorage
-    updateCardInDOM(id);
+    updateCardInDOM(id);  
   }, 'action', 'trash');
 
+  // Кнопка редактирования карточки
+  const moreButton = Button('', () => {
+    stateManager.editableCardId = id;
+    openOverlay(Card({ id, title, color, tasks }), () => updateCardInDOM(id));
+  }, 'action', 'more');
+  moreButton.style.paddingLeft = '20px';
+
+  // Color Picker компонент
   const colorPickerElement = ColorPicker(onColorSelect, getCardColorByID(id));
   function onColorSelect(selectedColor) {
     setCardColor(id, selectedColor);
@@ -73,7 +82,13 @@ export default function Card({ id, title, color, tasks }) {
   if (tasks.length > 0) {
     cardElement.appendChild(tasksListElement);
   }
-  cardElement.append(taskInput, actionContainerElement, colorPickerElement); // Добавление инпута для новой задачи в карточку
+
+  //Если карточка редактируется
+  if (stateManager.overlay.open || stateManager.editableCardId === id) {
+    cardElement.append(taskInput, actionContainerElement, colorPickerElement);
+  } else {
+    cardElement.appendChild(moreButton);
+  }
 
   return cardElement;
 }

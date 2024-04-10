@@ -4,6 +4,7 @@ import plusIcon from '../../icons/plus.svg';
 import paletteIcon from '../../icons/palette.svg';
 import trashIcon from '../../icons/trash.svg';
 import crossIcon from '../../icons/cross.svg';
+import moreIcon from '../../icons/more.svg';
 
 export default function Button(text = '', onClick = () => {}, type = 'default', icon = null) {
   const button = document.createElement('div');
@@ -29,6 +30,9 @@ export default function Button(text = '', onClick = () => {}, type = 'default', 
     }
     if (icon === 'cross') {
       img.src = crossIcon;
+    }
+    if (icon === 'more') {
+      img.src = moreIcon;
     }
     button.appendChild(img);
   }

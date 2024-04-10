@@ -19,7 +19,7 @@ export default function Page(cards) {
   const myButton = Button('', () => {
     const newCard = addCard();
     const emptyCard = { title: '', id: newCard.id, tasks: [] }
-    const closeOverlay = openOverlay(Card(emptyCard), () => updateCardInDOM(newCard.id));
+    openOverlay(Card(emptyCard), () => updateCardInDOM(newCard.id));
     console.log('Кнопка была нажата!');
   }, 'cta', 'plus');
   pageElement.appendChild(myButton);
