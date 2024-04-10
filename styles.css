@@ -15,4 +15,4 @@
 .color-picker{position:absolute;display:block;gap:10px;padding:0;bottom:0;left:50%;transform:translate(-50%, 80%);justify-content:center;background-color:#fff;padding:10px;border-radius:3px;box-shadow:rgba(0,0,0,.24) 0px 3px 8px}.color-picker-item{border:solid 1px rgba(0,0,0,.3);position:relative;width:20px;height:20px;cursor:pointer;border-radius:50%}.checkmark{width:12px;height:12px;position:absolute;top:-2px;right:-2px;display:none}
 .button{display:flex;align-items:center;gap:2px;cursor:pointer}.button-cta{position:fixed;margin:20px;padding:12px;bottom:0;right:0;border-radius:100px;background-color:#039bf1}.button-cta:hover{opacity:90%}.button-action:hover{opacity:90%}
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:center;z-index:1000}.content-container{background-color:#fff;box-shadow:0 4px 6px rgba(0,0,0,.1);border-radius:8px}
-.page{display:flex;flex-wrap:wrap;grid-gap:16px}
+.page{display:flex;flex-wrap:wrap;grid-gap:16px;padding:20px}
