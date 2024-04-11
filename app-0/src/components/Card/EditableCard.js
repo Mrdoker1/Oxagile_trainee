@@ -1,6 +1,6 @@
 import Task from '../Task/Task';
 import './Card.scss'
-import { editCardName, addTaskToCard, updateCardInDOM, deleteCard, setCardColor, getCardColorByID, updateEditableCardInDOM } from '../../services/cardManager'
+import { editCardName, addTaskToCard, updateCardInDOM, deleteCard, setCardColor, getCardColorByID } from '../../services/cardManager'
 import TaskInput from '../TaskInput/TaskInput';
 import ColorPicker from '../ColorPicker/ColorPicker';
 import Button from '../Button/Button';
@@ -30,7 +30,7 @@ export default function EditableCard({ id, title, color, tasks }) {
   // Инпут для новой таски
   const taskInput = TaskInput((newTaskTitle) => {
     addTaskToCard(id, newTaskTitle); // Функция для добавления задачи должна быть определена и передана в Card
-    updateEditableCardInDOM(id);
+    updateCardInDOM(id, true);
   });
 
   // Кнопка удаления карточки
@@ -40,15 +40,14 @@ export default function EditableCard({ id, title, color, tasks }) {
       console.log('Overlay closed');
     }
     deleteCard(id); // Удаление карточки из localStorage
-    updateEditableCardInDOM(id);
-    updateCardInDOM(id);
+    updateCardInDOM(id, true);
   }, 'action', 'trash');
 
   // Color Picker компонент
   const colorPickerElement = ColorPicker(onColorSelect, getCardColorByID(id));
   function onColorSelect(selectedColor) {
     setCardColor(id, selectedColor);
-    const updatedCard = updateEditableCardInDOM(id);
+    const updatedCard = updateCardInDOM(id, true);
     const colorPicker = updatedCard.querySelector('.color-picker');
     colorPicker.style.display = 'flex';
   };

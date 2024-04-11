@@ -1,5 +1,5 @@
 import './Task.scss'
-import { editTaskInCard, toggleTaskCompleted, deleteTaskFromCard, updateCardInDOM, updateEditableCardInDOM } from '../../services/cardManager'
+import { editTaskInCard, toggleTaskCompleted, deleteTaskFromCard, updateCardInDOM } from '../../services/cardManager'
 import Button from '../../components/Button/Button';
 
 export default function Task(cardID, editable, { id, title, completed }) {
@@ -15,7 +15,7 @@ export default function Task(cardID, editable, { id, title, completed }) {
    // Обработчик события изменения чекбокса
   checkbox.addEventListener('change', () => {
     toggleTaskCompleted(cardID, id); // Переключение состояния задачи
-    editable ? updateEditableCardInDOM(cardID) : updateCardInDOM(cardID)
+    editable ? updateCardInDOM(id, true) : updateCardInDOM(cardID)
   });
 
   // Редактируемый заголовок
@@ -37,7 +37,7 @@ export default function Task(cardID, editable, { id, title, completed }) {
   // Создание кнопки удаления и добавление ее в элемент задачи
   const deleteButton = Button('', () => {
       deleteTaskFromCard(cardID, id); // Удаление задачи из карточки
-      updateEditableCardInDOM(cardID); // Обновление DOM для отражения изменений
+      updateCardInDOM(cardID, true); // Обновление DOM для отражения изменений
     }
   , 'action', 'cross');
 
