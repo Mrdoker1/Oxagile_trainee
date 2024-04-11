@@ -15,7 +15,7 @@ export default function Task(cardID, editable, { id, title, completed }) {
    // Обработчик события изменения чекбокса
   checkbox.addEventListener('change', () => {
     toggleTaskCompleted(cardID, id); // Переключение состояния задачи
-    editable ? updateCardInDOM(id, true) : updateCardInDOM(cardID)
+    editable ? updateCardInDOM(cardID, true) : updateCardInDOM(cardID)
   });
 
   // Редактируемый заголовок
