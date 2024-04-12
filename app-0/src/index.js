@@ -7,10 +7,10 @@ import { loadCards, addCard, getCardByID } from './services/cardManager';
 document.addEventListener('DOMContentLoaded', async () => {
     const app = document.querySelector('#root');
 
-    // if (!getCardByID(1)) {
-    //   const tasks = await fetchData(6);
-    //   addCard('Card from Fetch', 1, tasks);
-    // }
+    if (!getCardByID(1)) {
+      const tasks = await fetchData(6);
+      addCard('Card from Fetch', 1, tasks);
+    }
 
     // Создание главной страницы и добавление карточек
     const cardElements = loadCards().map(cardData => Card(cardData));
