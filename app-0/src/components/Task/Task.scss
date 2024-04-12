@@ -10,6 +10,9 @@
 .task-title {
   @include inter-font(14px, #000000);
   overflow: auto;
+  &:not(.editable) {
+    @include multi-line-ellipsis(3);
+  }
 }
 
 .task-container{
@@ -17,6 +20,7 @@
   align-items: flex-start;
   gap: 4px;
   overflow: auto;
+  width: fit-content;
 }
 
 .task-completed {

@@ -11,3 +11,13 @@
     font-size: $size;
     color: $color;
 }
+
+@mixin multi-line-ellipsis($line-count: 3) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line-count;
+    white-space: normal; // Это позволит тексту переноситься на новые строки
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }

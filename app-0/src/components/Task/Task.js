@@ -25,6 +25,7 @@ export default function Task(cardID, editable, { id, title, completed }) {
   titleElement.className = 'task-title';
   if (editable) {
     titleElement.setAttribute('contenteditable', 'true');
+    titleElement.classList.add('editable');
     titleElement.addEventListener('blur', function(event) {
       console.log('Новое значение:', this.textContent);
       editTaskInCard(cardID, id, this.textContent);
