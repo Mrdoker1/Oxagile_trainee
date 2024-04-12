@@ -3,7 +3,7 @@ export class StateManager {
       if (StateManager.instance) {
         return StateManager.instance;
       }
-      this._overlay = { open: false, onCLose: () => {} } // Закрыт по умолчанию
+      this._overlay = { open: false, close: null, onCLose: null } // Закрыт по умолчанию
       this._editableCardId = null; // ID редактируемой карточки, null если нет
       StateManager.instance = this;
     }

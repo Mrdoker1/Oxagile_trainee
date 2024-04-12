@@ -12,13 +12,13 @@ export const saveCards = (cards) => {
     saveToLocalStorage(CARDS_KEY, cards);
 };
 
-export const addCard = (title) => {
+export const addCard = (title, id = null, tasks = null) => {
   const cards = loadCards();
   const newCard = {
-    id: Date.now(), // Простой способ создать уникальный ID
+    id: id ? id : Date.now(), // Простой способ создать уникальный ID
     title,
     color: null,
-    tasks: [] // Изначально задач нет
+    tasks: tasks ? tasks : [] // Изначально задач нет
   };
   cards.push(newCard);
   saveCards(cards);

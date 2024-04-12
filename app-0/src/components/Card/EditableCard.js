@@ -35,11 +35,10 @@ export default function EditableCard({ id, title, color, tasks }) {
 
   // Кнопка удаления карточки
   const deleteButton = Button('', () => {
-    if (stateManager.overlay.open) {
-      stateManager.overlay.onCLose();
-      console.log('Overlay closed');
-    }
     deleteCard(id); // Удаление карточки из localStorage
+    if (stateManager.overlay.open) {
+      stateManager.overlay.close();
+    }
     updateCardInDOM(id, true);
   }, 'action', 'trash');
 

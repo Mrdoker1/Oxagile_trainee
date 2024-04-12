@@ -5,7 +5,7 @@ export default function openOverlay(content, onClose) {
 
     // Для открытия оверлея
     const stateManager = getStateManager();
-    stateManager.overlay = { open: true, onCLose: close } 
+    stateManager.overlay = { open: true, close: close, onCLose: onClose } 
 
     // Создание фона оверлея
     const overlayElement = document.createElement('div');
@@ -24,17 +24,17 @@ export default function openOverlay(content, onClose) {
       event.stopPropagation();
       if (event.target === overlayElement) {
         close(); // Автоматическое закрытие оверлея
-        if (onClose) {
-          onClose(); // Вызов дополнительной пользовательской логики при закрытии
-          console.log('onClose executed');
-        }
-        // Оверлей закрыт
-        stateManager.overlay = { open: false, onCLose: null } ;
       }
     });
   
     // Функция для закрытия оверлея
     function close() {
+      if (onClose) {
+        onClose(); // Вызов дополнительной пользовательской логики при закрытии
+        console.log('onClose executed');
+      }
+      // Оверлей закрыт
+      stateManager.overlay.open = false;
       document.body.removeChild(overlayElement);
     }
   
